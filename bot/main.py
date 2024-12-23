@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # Mensajes
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
 
-    # Errors
+    # Errores
     app.add_error_handler(error)
 
     # Revisa cada 5 segundos por mensajes nuevos

@@ -8,7 +8,7 @@ class RAGClient:
         self.base_url = base_url
         self.query_endpoint = f"{self.base_url}/query"
 
-    def query(self, message: str, k: int = 40):
+    def query(self, message: str, k: int = 10):
         """
         Envia una consulta al backend del sistema RAG y devuelve la respuesta.
 

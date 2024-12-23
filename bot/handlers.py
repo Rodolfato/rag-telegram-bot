@@ -5,14 +5,16 @@ from telegram.ext import (
 
 from api.client import RAGClient
 from bot.config import BOT_USERNAME
+from bot.utils import format_response_as_markdown
 
 
 def handle_response(text: str) -> str:
     lower_case = text.lower()
     rag_client = RAGClient()
-    response = rag_client.query(lower_case, 8)
+    response = rag_client.query(lower_case, 12)
     print(response)
-    return response["model_response"]
+    markdown_response = format_response_as_markdown(response)
+    return markdown_response
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -32,7 +34,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         response = handle_response(text)
 
     print("Bot: ", response)
-    await update.message.reply_text(response)
+    await update.message.reply_markdown_v2(response)
 
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
